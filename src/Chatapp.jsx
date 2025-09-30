@@ -54,12 +54,15 @@ export default function ChatApp() {
     if (socket.connected) {
       socket.disconnect();
     }
-    socket.auth = { _id: user._id };
-    socket.connect();
+    socket.auth = { Authorization: `Bearer ${access_token}` }
+    socket.connect()
     socket.on("received_message", (data) => {
       console.log("data", data);
       const { payload } = data;
-      setMessage((prev) => [{ ...payload, isSender: false }, ...prev]);
+      setMessage((prev) => [{ ...payload, isSender: false }, ...prev])
+    });
+    socket.on("connect_error", (err) => {
+      console.log(err); // not authorized
     });
     return () => {
       socket.disconnect();

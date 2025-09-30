@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Login from './Login'
 import Home from './Home'
-import ChatApp from './Chatapp'
+import ChatApp from './ChatApp'
 import LoginTraditional from './LoginTraditional'
 
 const router = createBrowserRouter([
